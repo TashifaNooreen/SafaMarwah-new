@@ -1,5 +1,5 @@
-import { HomeView } from "@/components/views/home-view";
+import { PhoneLoginView } from "@/components/views/phone-login-view";
 
-export default function Home() {
-  return <HomeView />;
+export default function LoginPage() {
+  return <PhoneLoginView />;
 }

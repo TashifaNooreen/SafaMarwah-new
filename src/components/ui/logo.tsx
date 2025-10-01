@@ -25,10 +25,10 @@ const MosqueIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className={cn("flex items-center gap-2 text-foreground", className)}>
+    <Link href="/home" className={cn("flex items-center gap-2 text-foreground", className)}>
       <MosqueIcon className="h-7 w-7 text-primary" />
       <span className="text-xl font-bold font-headline tracking-tight">
-        Umrah Compare
+        SafaMarwah.in
       </span>
     </Link>
   );

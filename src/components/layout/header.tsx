@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Menu, X, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -18,21 +19,22 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Logo } from "@/components/ui/logo";
 
 const navItems = [
-  { href: "#", label: "Home" },
-  { href: "#packages", label: "Packages" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "/home", label: "Home" },
+  { href: "/home#packages", label: "Packages" },
+  { href: "/home#about", label: "About" },
+  { href: "/home#contact", label: "Contact" },
 ];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setIsClient(true);
     try {
-      const loggedInStatus = localStorage.getItem("isLoggedIn") === "true";
+      const loggedInStatus = localStorage.getItem("isAuthenticated") === "true";
       setIsLoggedIn(loggedInStatus);
     } catch (error) {
       // localStorage is not available
@@ -48,14 +50,10 @@ export function Header() {
     };
   }, []);
 
-  const handleLogin = () => {
-    localStorage.setItem("isLoggedIn", "true");
-    setIsLoggedIn(true);
-  };
-
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("isAuthenticated");
     setIsLoggedIn(false);
+    router.push('/');
   };
 
   return (
@@ -85,8 +83,8 @@ export function Header() {
               <UserMenu onLogout={handleLogout} />
             ) : (
               <>
-                <Button variant="ghost" size="sm">Sign In</Button>
-                <Button onClick={handleLogin} size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">Sign Up</Button>
+                <Button variant="ghost" size="sm" onClick={() => router.push('/')}>Sign In</Button>
+                <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => router.push('/')}>Sign Up</Button>
               </>
             )}
           </div>
@@ -123,10 +121,10 @@ export function Header() {
                      ) : (
                        <>
                          <SheetClose asChild>
-                           <Button variant="outline">Sign In</Button>
+                           <Button variant="outline" onClick={() => router.push('/')}>Sign In</Button>
                          </SheetClose>
                          <SheetClose asChild>
-                           <Button onClick={handleLogin} className="bg-accent text-accent-foreground hover:bg-accent/90">Sign Up</Button>
+                           <Button className="bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => router.push('/')}>Sign Up</Button>
                          </SheetClose>
                        </>
                      )}
