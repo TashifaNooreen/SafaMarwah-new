@@ -67,7 +67,7 @@ export function ComparisonDialog({ open, onOpenChange, packages }: ComparisonDia
                           <Check className="h-5 w-5 text-green-600" /> : 
                           <X className="h-5 w-5 text-red-600" />
                         ) : field.key === 'price' ? (
-                          `₹${pkg[field.key].toLocaleString('en-IN')}`
+                          <span dangerouslySetInnerHTML={{ __html: `&#8377;${pkg[field.key].toLocaleString('en-IN')}` }} />
                         ) : (
                           String(pkg[field.key])
                         )}

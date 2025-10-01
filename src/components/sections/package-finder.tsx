@@ -86,9 +86,9 @@ export function PackageFinder({ onCompareToggle, isPackageSelected }: PackageFin
                           <SelectTrigger><SelectValue placeholder="Select price range" /></SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="₹75,000-₹1,50,000">₹75,000 - ₹1,50,000</SelectItem>
-                          <SelectItem value="₹1,50,000-₹3,00,000">₹1,50,000 - ₹3,00,000</SelectItem>
-                          <SelectItem value="₹3,00,000+">₹3,00,000+</SelectItem>
+                          <SelectItem value="₹75,000-₹1,50,000">&#8377;75,000 - &#8377;1,50,000</SelectItem>
+                          <SelectItem value="₹1,50,000-₹3,00,000">&#8377;1,50,000 - &#8377;3,00,000</SelectItem>
+                          <SelectItem value="₹3,00,000+">&#8377;3,00,000+</SelectItem>
                         </SelectContent>
                       </Select>
                     </FormItem>
