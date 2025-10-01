@@ -13,7 +13,7 @@ export const featuredPackages: Package[] = [
   {
     id: 'fp_001',
     packageName: 'Economy Umrah Package',
-    price: 1200,
+    price: 96000,
     duration: '10 days',
     airline: 'Saudi Airlines',
     ziyaratGuide: true,
@@ -25,7 +25,7 @@ export const featuredPackages: Package[] = [
   {
     id: 'fp_002',
     packageName: '5-Star Umrah Experience',
-    price: 3500,
+    price: 280000,
     duration: '7 days',
     airline: 'Emirates',
     ziyaratGuide: true,
@@ -37,7 +37,7 @@ export const featuredPackages: Package[] = [
   {
     id: 'fp_003',
     packageName: 'Family Umrah Deal',
-    price: 1500,
+    price: 120000,
     duration: '14 days',
     airline: 'Qatar Airways',
     ziyaratGuide: false,
@@ -49,7 +49,7 @@ export const featuredPackages: Package[] = [
   {
     id: 'fp_004',
     packageName: 'Short & Sweet Umrah',
-    price: 950,
+    price: 76000,
     duration: '5 days',
     airline: 'Turkish Airlines',
     ziyaratGuide: false,
@@ -61,7 +61,7 @@ export const featuredPackages: Package[] = [
   {
     id: 'fp_005',
     packageName: 'All-Inclusive Luxury',
-    price: 4200,
+    price: 336000,
     duration: '12 days',
     airline: 'Etihad',
     ziyaratGuide: true,
@@ -73,7 +73,7 @@ export const featuredPackages: Package[] = [
   {
     id: 'fp_006',
     packageName: 'Spiritual Journey',
-    price: 2200,
+    price: 176000,
     duration: '15 days',
     airline: 'Saudi Airlines',
     ziyaratGuide: true,
@@ -85,7 +85,7 @@ export const featuredPackages: Package[] = [
   {
     id: 'fp_007',
     packageName: 'Ramadan Special',
-    price: 2800,
+    price: 224000,
     duration: '10 days',
     airline: 'Emirates',
     ziyaratGuide: true,
@@ -97,7 +97,7 @@ export const featuredPackages: Package[] = [
   {
     id: 'fp_008',
     packageName: 'Budget Friendly Hajj',
-    price: 6000,
+    price: 480000,
     duration: '21 days',
     airline: 'FlyNas',
     ziyaratGuide: false,

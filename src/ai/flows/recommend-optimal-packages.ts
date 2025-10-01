@@ -14,7 +14,7 @@ import {z} from 'genkit';
 const RecommendOptimalPackagesInputSchema = z.object({
   priceRange: z
     .string()
-    .describe('The preferred price range for the package (e.g., "$1000-$2000").'),
+    .describe('The preferred price range for the package in INR (e.g., "₹75,000-₹1,50,000").'),
   airlinePreference: z
     .string()
     .describe('The preferred airline for the package (e.g., "Emirates", "Saudi Airlines", or "Any").'),
@@ -77,7 +77,7 @@ Duration: {{{duration}}}
 Food Preference: {{{foodPreference}}}
 Distance from Masjid al-Haram: {{{distanceFromHaram}}}
 
-Return a JSON array of packages that best match the user's preferences.  Each package should include packageName, price, duration, airline, ziyaratGuide, departureLocation, food, and distanceFromHaram.  Return ONLY a valid JSON array.  Do not include any other text in your response.
+Return a JSON array of packages that best match the user's preferences. The price should be in INR. Each package should include packageName, price, duration, airline, ziyaratGuide, departureLocation, food, and distanceFromHaram. Return ONLY a valid JSON array. Do not include any other text in your response.
 `,
 });
 

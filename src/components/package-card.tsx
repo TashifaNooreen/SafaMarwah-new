@@ -33,7 +33,7 @@ export function PackageCard({ package: pkg, onCompareToggle, isSelected }: Packa
       <CardHeader>
         <CardTitle className="text-lg font-headline tracking-tight">{pkg.packageName}</CardTitle>
         <div className="flex items-baseline gap-2">
-            <p className="text-2xl font-bold text-primary">${pkg.price}</p>
+            <p className="text-2xl font-bold text-primary">₹{pkg.price.toLocaleString('en-IN')}</p>
             <span className="text-sm text-muted-foreground">/person</span>
         </div>
       </CardHeader>

@@ -35,12 +35,12 @@ export function HomeView() {
       <Header />
       <main className="flex-1">
         <Hero />
-        <FeaturedPackages 
-          packages={initialPackages} 
+        <PackageFinder 
           onCompareToggle={handleCompareToggle} 
           isPackageSelected={isPackageSelected}
         />
-        <PackageFinder 
+        <FeaturedPackages 
+          packages={initialPackages} 
           onCompareToggle={handleCompareToggle} 
           isPackageSelected={isPackageSelected}
         />

@@ -20,7 +20,7 @@ import { Skeleton } from '../ui/skeleton';
 
 
 const formSchema = z.object({
-  priceRange: z.string().default('$1000-$2000'),
+  priceRange: z.string().default('₹75,000-₹1,50,000'),
   airlinePreference: z.string().default('Any'),
   ziyaratGuideAvailability: z.boolean().default(true),
   departureLocation: z.string().default('Any'),
@@ -86,9 +86,9 @@ export function PackageFinder({ onCompareToggle, isPackageSelected }: PackageFin
                           <SelectTrigger><SelectValue placeholder="Select price range" /></SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="$1000-$2000">$1000 - $2000</SelectItem>
-                          <SelectItem value="$2000-$4000">$2000 - $4000</SelectItem>
-                          <SelectItem value="$4000+">$4000+</SelectItem>
+                          <SelectItem value="₹75,000-₹1,50,000">₹75,000 - ₹1,50,000</SelectItem>
+                          <SelectItem value="₹1,50,000-₹3,00,000">₹1,50,000 - ₹3,00,000</SelectItem>
+                          <SelectItem value="₹3,00,000+">₹3,00,000+</SelectItem>
                         </SelectContent>
                       </Select>
                     </FormItem>
