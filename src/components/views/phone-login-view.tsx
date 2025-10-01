@@ -16,7 +16,7 @@ import { Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const phoneSchema = z.object({
-  phone: z.string().min(10, 'Please enter a valid 10-digit phone number.').max(10),
+  phone: z.string().min(10, 'Please enter a valid 10-digit phone number.').max(10, 'Please enter a valid 10-digit phone number.'),
 });
 
 const otpSchema = z.object({
@@ -154,6 +154,13 @@ export function PhoneLoginView() {
                             placeholder="_ _ _ _ _ _"
                             maxLength={6}
                             {...field}
+                            onChange={(e) => {
+                                const { value } = e.target;
+                                // allow only numbers and limit length
+                                if (/^\d*$/.test(value) && value.length <= 6) {
+                                  field.onChange(value);
+                                }
+                            }}
                           />
                         </FormControl>
                         <FormMessage />
@@ -168,7 +175,11 @@ export function PhoneLoginView() {
                     variant="link"
                     type="button"
                     className="w-full text-sm text-muted-foreground"
-                    onClick={() => setStep('phone')}
+                    onClick={() => {
+                        setStep('phone');
+                        phoneForm.reset();
+                        otpForm.reset();
+                    }}
                     disabled={isLoading}
                   >
                     Change Number
