@@ -46,16 +46,23 @@ export function PhoneLoginView() {
   async function onPhoneSubmit(values: PhoneFormValues) {
     setIsLoading(true);
     // This is where you would call your backend to send an OTP
-    // For now, we'll simulate a delay and then move to the OTP step
-    console.log('Sending OTP to:', values.phone);
+    // For now, we'll simulate a delay and then move to the home page
+    console.log('Logging in with phone:', values.phone);
     await new Promise(resolve => setTimeout(resolve, 1500));
-    setPhoneNumber(values.phone);
+    
+    // On successful verification
+    try {
+      localStorage.setItem('isAuthenticated', 'true');
+    } catch (error) {
+       console.error("Could not set auth status in local storage", error);
+    }
+    
     setIsLoading(false);
-    setStep('otp');
     toast({
-      title: 'OTP Sent',
-      description: 'An OTP has been sent to your mobile number.',
+      title: 'Success!',
+      description: 'You have been successfully logged in.',
     });
+    router.push('/home');
   }
 
   async function onOtpSubmit(values: OtpFormValues) {
@@ -136,7 +143,7 @@ export function PhoneLoginView() {
                   />
                   <Button type="submit" className="w-full" disabled={isLoading}>
                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    Send OTP
+                    Proceed
                   </Button>
                 </form>
               </Form>
