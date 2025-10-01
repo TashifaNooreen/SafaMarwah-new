@@ -1,20 +1,26 @@
+'use client';
+
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function Hero() {
+  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-banner');
 
   return (
     <section className="relative w-full">
       <div className="absolute inset-0">
+        {heroImage && (
           <Image
-            src="https://images.unsplash.com/photo-1583911269209-a7c366e51137?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtZWN8ZW58MHx8fHwxNzU5Mzc0MTA5fDA&ixlib=rb-4.1.0&q=80&w=1080"
+            src={heroImage.imageUrl}
             alt="Hero background image of a holy site in Mecca"
-            data-ai-hint="mecca pilgrimage"
+            data-ai-hint={heroImage.imageHint}
             fill
             className="object-cover"
             priority
           />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/20 to-transparent" />
       </div>
       <div className="relative z-10 container flex min-h-[70vh] items-center justify-center">
