@@ -177,7 +177,6 @@ export function PhoneLoginView() {
                     className="w-full text-sm text-muted-foreground"
                     onClick={() => {
                         setStep('phone');
-                        phoneForm.reset();
                         otpForm.reset();
                     }}
                     disabled={isLoading}
