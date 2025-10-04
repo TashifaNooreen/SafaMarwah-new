@@ -33,6 +33,7 @@ const RecommendOptimalPackagesInputSchema = z.object({
   distanceFromHaram: z
     .string()
     .describe('The preferred distance from Masjid al-Haram (e.g., "0-500m", "500m-1km", or "Any").'),
+  userPrompt: z.string().optional().describe("The user's raw text prompt, e.g. 'I want a cheap package for 10 days'"),
 });
 
 export type RecommendOptimalPackagesInput = z.infer<
@@ -66,9 +67,14 @@ const prompt = ai.definePrompt({
   name: 'recommendOptimalPackagesPrompt',
   input: {schema: RecommendOptimalPackagesInputSchema},
   output: {schema: RecommendOptimalPackagesOutputSchema},
-  prompt: `You are a travel expert specializing in Umrah and Hajj packages. Based on the user's preferences, recommend the best packages.
+  prompt: `You are a travel expert specializing in Umrah and Hajj packages. A user will provide their preferences in a text prompt. Your job is to understand their request and recommend the 3 best packages.
 
-User Preferences:
+User's request:
+"{{{userPrompt}}}"
+
+Infer their preferences from the prompt. If a preference is not mentioned, you can make a reasonable assumption or choose the most common option.
+
+Here are the user preferences you should try to determine:
 Price Range: {{{priceRange}}}
 Airline Preference: {{{airlinePreference}}}
 Ziyarat Guide Availability: {{{ziyaratGuideAvailability}}}
@@ -77,7 +83,9 @@ Duration: {{{duration}}}
 Food Preference: {{{foodPreference}}}
 Distance from Masjid al-Haram: {{{distanceFromHaram}}}
 
-Return a JSON array of packages that best match the user's preferences. The price should be in INR. Each package should include packageName, price, duration, airline, ziyaratGuide, departureLocation, food, and distanceFromHaram. Return ONLY a valid JSON array. Do not include any other text in your response.
+Based on your analysis of the user's prompt, return a JSON array of the top 3 packages that best match their needs. The price should be in INR. Each package should include packageName, price, duration, airline, ziyaratGuide, departureLocation, food, and distanceFromHaram.
+
+Return ONLY a valid JSON array. Do not include any other text in your response.
 `,
 });
 
