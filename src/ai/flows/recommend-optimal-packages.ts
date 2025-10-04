@@ -72,20 +72,20 @@ const prompt = ai.definePrompt({
 User's request:
 "{{{userPrompt}}}"
 
-Infer their preferences from the prompt. If a preference is not mentioned, you can make a reasonable assumption or choose the most common option.
+Infer the user's preferences from their prompt. If a preference is not mentioned, you can make a reasonable assumption or choose the most common option (like 'Any' or a popular choice).
 
-Here are the user preferences you should try to determine:
-Price Range: {{{priceRange}}}
-Airline Preference: {{{airlinePreference}}}
-Ziyarat Guide Availability: {{{ziyaratGuideAvailability}}}
-Departure Location: {{{departureLocation}}}
-Duration: {{{duration}}}
-Food Preference: {{{foodPreference}}}
-Distance from Masjid al-Haram: {{{distanceFromHaram}}}
+Here are the user preferences you should try to determine from the prompt:
+- Price Range (in INR): {{{priceRange}}}
+- Airline Preference: {{{airlinePreference}}}
+- Ziyarat Guide Availability: {{{ziyaratGuideAvailability}}}
+- Departure Location: {{{departureLocation}}}
+- Duration (in days): {{{duration}}}
+- Food Preference: {{{foodPreference}}}
+- Distance from Masjid al-Haram: {{{distanceFromHaram}}}
 
-Based on your analysis of the user's prompt, return a JSON array of the top 3 packages that best match their needs. The price should be in INR. Each package should include packageName, price, duration, airline, ziyaratGuide, departureLocation, food, and distanceFromHaram.
+Based on your analysis of the user's prompt, generate a list of 3 diverse and relevant packages. The price must be a number in INR. Each package object must include: packageName, price, duration, airline, ziyaratGuide, departureLocation, food, and distanceFromHaram.
 
-Return ONLY a valid JSON array. Do not include any other text in your response.
+Return ONLY a valid JSON array of 3 package objects. Do not include any other text, markdown, or explanations in your response.
 `,
 });
 
@@ -97,6 +97,9 @@ const recommendOptimalPackagesFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return output!;
+    if (!output) {
+      throw new Error("Failed to get a response from the AI model.");
+    }
+    return output;
   }
 );

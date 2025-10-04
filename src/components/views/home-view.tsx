@@ -6,7 +6,6 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Hero } from '@/components/sections/hero';
 import { FeaturedPackages } from '@/components/sections/featured-packages';
-import { PackageFinder } from '@/components/sections/package-finder';
 import { About } from '@/components/sections/about';
 import { Testimonials } from '@/components/sections/testimonials';
 import { ComparisonDialog } from '@/components/comparison-dialog';
@@ -35,10 +34,6 @@ export function HomeView() {
       <Header />
       <main className="flex-1">
         <Hero />
-        <PackageFinder 
-          onCompareToggle={handleCompareToggle} 
-          isPackageSelected={isPackageSelected}
-        />
         <FeaturedPackages 
           packages={initialPackages} 
           onCompareToggle={handleCompareToggle} 
