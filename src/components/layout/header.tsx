@@ -20,7 +20,7 @@ import { Logo } from "@/components/ui/logo";
 
 const navItems = [
   { href: "/home", label: "Home" },
-  { href: "/home#packages", label: "Packages" },
+  { href: "/chat", label: "Find Packages" },
   { href: "/home#about", label: "About" },
   { href: "/home#contact", label: "Contact" },
 ];
@@ -51,7 +51,11 @@ export function Header() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated");
+    try {
+      localStorage.removeItem("isAuthenticated");
+    } catch (error) {
+        console.error("Could not remove auth status from local storage", error);
+    }
     setIsLoggedIn(false);
     router.push('/');
   };
@@ -60,7 +64,7 @@ export function Header() {
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
-        isScrolled ? "border-b bg-background/80 backdrop-blur-sm" : "bg-background/0"
+        isScrolled ? "border-b bg-background/80 backdrop-blur-sm" : "bg-transparent"
       )}
     >
       <div className="container flex h-20 items-center justify-between">
@@ -70,7 +74,10 @@ export function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+              className={cn(
+                  "text-sm font-medium text-foreground/80 transition-colors hover:text-foreground",
+                  item.label === "Find Packages" ? "text-primary font-bold" : ""
+              )}
             >
               {item.label}
             </Link>
@@ -84,7 +91,6 @@ export function Header() {
             ) : (
               <>
                 <Button variant="ghost" size="sm" onClick={() => router.push('/')}>Sign In</Button>
-                <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => router.push('/')}>Sign Up</Button>
               </>
             )}
           </div>
@@ -122,9 +128,6 @@ export function Header() {
                        <>
                          <SheetClose asChild>
                            <Button variant="outline" onClick={() => router.push('/')}>Sign In</Button>
-                         </SheetClose>
-                         <SheetClose asChild>
-                           <Button className="bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => router.push('/')}>Sign Up</Button>
                          </SheetClose>
                        </>
                      )}
